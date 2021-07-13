@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">bein_java</string>
+    <string name="feed">Feed</string>
+    <string name="trash">trash</string>
+    <string name="camera_and_storage_rationale">permission for camera and storage</string>
+</resources>
