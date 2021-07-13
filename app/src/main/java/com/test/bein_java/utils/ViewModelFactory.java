@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.test.bein_java.data.NewsRepository;
 import com.test.bein_java.data.source.DummyDateSource;
-import com.test.bein_java.ui.fragments.TrashViewModel;
+import com.test.bein_java.view_mode.TrashViewModel;
 import com.test.bein_java.view_mode.NewsFeedViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {

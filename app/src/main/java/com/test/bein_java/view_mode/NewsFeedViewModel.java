@@ -18,6 +18,7 @@ public class NewsFeedViewModel extends ViewModel {
 
 
     public void deleteNews(News news) {
+        mNewsRepository.moveToTrash(news);
 
     }
 

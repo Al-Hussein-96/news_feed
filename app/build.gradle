@@ -60,5 +60,8 @@ dependencies {
 
     implementation 'pub.devrel:easypermissions:3.0.0'
 
+    implementation 'com.wang.avi:library:2.1.3'
+
+
 
 }

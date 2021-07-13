@@ -1,5 +1,6 @@
 package com.test.bein_java.dialog;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.test.bein_java.R;
 import com.test.bein_java.data.News;
+
+import org.jetbrains.annotations.NotNull;
 
 public class BottomSheetDialog extends BottomSheetDialogFragment {
     private BottomSheetListener mListener;
@@ -19,6 +24,14 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     public BottomSheetDialog(BottomSheetListener mListener, News news) {
         this.mListener = mListener;
         this.news = news;
+    }
+
+
+    @Override
+    public void onCreate(@androidx.annotation.Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+
     }
 
     @Nullable
@@ -34,7 +47,21 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
         });
         button2.setOnClickListener(v12 -> dismiss());
 
+
+
         return v;
+    }
+
+    @NonNull
+    @NotNull
+    @Override
+    public Dialog onCreateDialog(@androidx.annotation.Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+
+        Dialog dialog =  super.onCreateDialog(savedInstanceState);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        return dialog;
+
     }
 
     public interface BottomSheetListener {

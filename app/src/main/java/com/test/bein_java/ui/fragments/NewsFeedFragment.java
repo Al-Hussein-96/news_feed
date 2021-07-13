@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,6 +60,7 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
 
     private ItemClicked itemClicked = news -> {
         BottomSheetDialog bottomSheet = new BottomSheetDialog(this, news);
+
         bottomSheet.show(getChildFragmentManager(), "exampleBottomSheet");
 
     };
@@ -92,6 +94,17 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
 
         binding.searchBar.cameraIcon.setOnClickListener(v -> {
             dispatchTakePictureIntent();
+        });
+
+        binding.searchBar.searchIcon.setOnClickListener(v -> {
+            binding.searchBar.indicator.show();
+            binding.searchBar.searchIcon.setVisibility(View.GONE);
+            binding.searchBar.indicator.setVisibility(View.VISIBLE);
+
+            new Handler().postDelayed(() -> {
+                binding.searchBar.searchIcon.setVisibility(View.VISIBLE);
+                binding.searchBar.indicator.hide();
+            }, 3000);
         });
 
 
@@ -158,8 +171,8 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Log.i("Mohammad", "CameraPhoto");
-                        // There are no request codes
-//                        doSomeOperations();
+//                      There are no request codes
+//                      doSomeOperations();
                         Bundle extras = result.getData().getExtras();
                         Bitmap imageBitmap = (Bitmap) extras.get("data");
                         String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), imageBitmap, "", null);
@@ -207,16 +220,13 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
 
 
     private void setupListAdapter() {
-
         mViewModel.getNewsLiveData().observe(getViewLifecycleOwner(), news -> {
             newsAdapter.replaceData(news);
         });
 
-
         binding.recyclerView.setAdapter(newsAdapter);
 
         runTimer();
-
     }
 
     private void runTimer() {
@@ -239,7 +249,15 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
     @Override
     public void onButtonClicked(News news) {
         mViewModel.deleteNews(news);
+        newsAdapter.deleteNews(news);
 
+        if (newsAdapter.getItemCount() == 0) {
+            binding.recyclerView.setVisibility(View.GONE);
+            binding.noFeed.getRoot().setVisibility(View.VISIBLE);
+        } else {
+            binding.recyclerView.setVisibility(View.VISIBLE);
+            binding.noFeed.getRoot().setVisibility(View.GONE);
+        }
     }
 
     public interface ItemClicked {

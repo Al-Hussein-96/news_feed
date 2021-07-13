@@ -3,4 +3,9 @@
     <string name="feed">Feed</string>
     <string name="trash">trash</string>
     <string name="camera_and_storage_rationale">permission for camera and storage</string>
+    <string name="no_feed_available">No Feed Available</string>
+    <string name="add_an_image">Add An Image</string>
+    <string name="are_you_sure_to_delete_this_items">Are you sure to delete this items?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>

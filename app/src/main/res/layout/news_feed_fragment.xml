@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/feed_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:visibility="visible">
 
         <include
             android:id="@+id/search_bar"
@@ -36,5 +37,10 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/no_feed"
+        layout="@layout/no_feed_availabe"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

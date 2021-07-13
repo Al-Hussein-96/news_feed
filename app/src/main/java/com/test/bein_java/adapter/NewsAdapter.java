@@ -30,13 +30,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-    private List<News> news;
+    private List<News> newsList;
     private Context context;
     private NewsFeedFragment.ItemClicked itemClicked;
 
-    public NewsAdapter(Context context, List<News> news, NewsFeedFragment.ItemClicked itemClicked) {
+    public NewsAdapter(Context context, List<News> newsList, NewsFeedFragment.ItemClicked itemClicked) {
         this.context = context;
-        this.news = news;
+        this.newsList = newsList;
         this.itemClicked = itemClicked;
     }
 
@@ -45,17 +45,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
 
 
-
-
-
-
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        holder.mItem = news.get(position);
+        holder.mItem = newsList.get(position);
 
         holder.bind();
 
@@ -97,28 +92,33 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return news.size();
+        return newsList.size();
     }
 
     public List<News> getItems() {
-        return news;
+        return newsList;
     }
 
     public void addNews(News newNews) {
-        news.add(newNews);
-        notifyItemInserted(news.size());
+        newsList.add(newNews);
+        notifyItemInserted(newsList.size());
     }
 
     public void removeItemsMoreThan10() {
 //        news.remove(10);
-        news.subList(10,getItemCount()).clear();
+        newsList.subList(10, getItemCount()).clear();
 
-        notifyItemRangeRemoved(10,getItemCount());
+        notifyItemRangeRemoved(10, getItemCount());
     }
 
     public void replaceData(List<News> news) {
-        this.news.clear();
-        this.news.addAll(news);
+        this.newsList.clear();
+        this.newsList.addAll(news);
+    }
+
+    public void deleteNews(News news) {
+        newsList.remove(news);
+        notifyDataSetChanged();
     }
 
 

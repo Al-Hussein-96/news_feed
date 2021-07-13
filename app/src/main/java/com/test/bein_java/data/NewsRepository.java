@@ -24,7 +24,23 @@ public class NewsRepository implements NewsDataSource {
     }
 
     @Override
+    public void deleteNewsPermanently(News news) {
+        dummyDateSource.deleteNewsPermanently(news);
+    }
+
+    @Override
+    public void moveToTrash(News news) {
+        dummyDateSource.moveToTrash(news);
+    }
+
+    @Override
     public void getNews(NewsCallback callback) {
         dummyDateSource.getNews(callback);
+    }
+
+    @Override
+    public void getDeletedNews(NewsCallback callback) {
+        dummyDateSource.getDeletedNews(callback::onNewsLoaded);
+
     }
 }
