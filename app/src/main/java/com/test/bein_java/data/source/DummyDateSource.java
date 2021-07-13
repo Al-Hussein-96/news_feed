@@ -4,6 +4,7 @@ import com.test.bein_java.data.News;
 import com.test.bein_java.data.datesource.NewsDataSource;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DummyDateSource implements NewsDataSource {
@@ -12,12 +13,12 @@ public class DummyDateSource implements NewsDataSource {
     private final static List<News> NEWS_ARRAY_LIST = new ArrayList<>();
 
     static {
-        NEWS_ARRAY_LIST.add(new News("1", "Mohammad", "https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg"));
-        NEWS_ARRAY_LIST.add(new News("2", "Mohammad", "https://raw.githubusercontent.com/facebook/fresco/master/docs/static/logo.png"));
-        NEWS_ARRAY_LIST.add(new News("3", "Mohammad", "https://cdn.pixabay.com/user/2013/11/05/02-10-23-764_250x250.jpg"));
-        NEWS_ARRAY_LIST.add(new News("4", "Mohammad", "https://raw.githubusercontent.com/facebook/fresco/master/docs/static/logo.png"));
-        NEWS_ARRAY_LIST.add(new News("5", "Mohammad", "https://raw.githubusercontent.com/martinapinky/staggered-grid/master/app/src/main/res/drawable/kimsoohyun.jpg"));
-        NEWS_ARRAY_LIST.add(new News("6", "Mohammad", "https://raw.githubusercontent.com/martinapinky/staggered-grid/master/app/src/main/res/drawable/parkseojoon.jpg"));
+        NEWS_ARRAY_LIST.add(new News("1", "Mohammad", "https://assets.nst.com.my/images/articles/03xxworld_1596384698.jpg"));
+        NEWS_ARRAY_LIST.add(new News("2", "Mohammad", "https://www.joelapompe.net/wp-content/uploads/2019/01/bottle-natural-mont-dore-2017.jpg"));
+        NEWS_ARRAY_LIST.add(new News("3", "Mohammad", "http://www.jkuat.ac.ke/departments/transport/wp-content/uploads/2018/11/natural-butterfly-image-for-mobile-1.jpg"));
+        NEWS_ARRAY_LIST.add(new News("4", "Mohammad", "https://assets.nst.com.my/images/articles/03xxworld_1596384698.jpg"));
+        NEWS_ARRAY_LIST.add(new News("5", "Mohammad", "https://www.joelapompe.net/wp-content/uploads/2019/01/bottle-natural-mont-dore-2017.jpg"));
+        NEWS_ARRAY_LIST.add(new News("6", "Mohammad", "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202007/nature-3289812_1280_0.jpeg"));
     }
 
     public static DummyDateSource getInstance() {
@@ -37,6 +38,12 @@ public class DummyDateSource implements NewsDataSource {
     @Override
     public void moveToTrash(News news) {
         news.setDelete(true);
+        news.setDeleteAt(new Date());
+    }
+
+    @Override
+    public void addNews(News news) {
+        NEWS_ARRAY_LIST.add(news);
     }
 
     @Override

@@ -34,6 +34,11 @@ public class NewsRepository implements NewsDataSource {
     }
 
     @Override
+    public void addNews(News news) {
+        dummyDateSource.addNews(news);
+    }
+
+    @Override
     public void getNews(NewsCallback callback) {
         dummyDateSource.getNews(callback);
     }

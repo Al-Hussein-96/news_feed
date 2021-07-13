@@ -1,17 +1,21 @@
 # Android test for the Vacancy (Tapped Application)
 
 ### Summary
-
 This sample is written in Java and based on the master branch which uses the following Architecture Components:
-
 
 - ViewModel
 - LiveData
 - View Binding
-- Navigation
-- Room
 
-## Qestions No- 2
+if I have enough time I can do it with the following Architecture Components with (Kotlin):
+- ViewModel
+- LiveData
+- View Binding & data Binding
+- hilt for injection
+- room
+- kotlin-coroutines
+
+## Questions No- 2
  A button to switch between fixed grid size and automatic height
 based on the image's aspect ratio.
 
@@ -37,11 +41,11 @@ I just use StraggedLayoutManager with AdjustBound = true for automatic size and 
 android:adjustViewBounds="true"
 ```
 
-## Qestions No- 3
+## Questions No- 3
 Cache all the images into Disk after downloading to be used offline.
 
 
-### note: I did't need to download image to disk becuase third-library have a Strategy to cahce on disk
+### note: I didn't need to download image to disk because third-library have a Strategy to cache on disk
 
 I can use any of this third-library to load image and cache theme on disk or memory
  - Fressco (https://github.com/facebook/fresco) (This is what I prefer and i will use it if I hava enough time)
@@ -49,7 +53,7 @@ I can use any of this third-library to load image and cache theme on disk or mem
  - Glide (https://github.com/bumptech/glide)    (This is what I used in a test)
  
 
-## Qestions No- 4
+## Questions No- 4
 Make a custom search bar that looks like the following:
 Note: don't forget to show/hide the progress
 loader in the search bar
@@ -58,7 +62,7 @@ I do it with thrid-library (https://github.com/81813780/AVLoadingIndicatorView)
 
 after cliked of serach icon I will start progress for 3 second then hide it
 
-## Qestions No- 5
+## Questions No- 5
 Tap on the camera icon to take a picture from the camera and insert it
 into the grid.
 Note: Once you add the item to the grid, show a local system
@@ -119,7 +123,7 @@ ActivityResultLauncher<Intent> launcher = registerForActivityResult(
         });
 ```
 
-## Qestions No- 6
+## Questions No- 6
 Long press gestures on the grid item rearrange the positions of the
 item
 
@@ -151,17 +155,17 @@ pure code for do this tasks (ItemTouchHelper)
 
 ```
 
-## Qestions No- 7
+## Questions No- 7
 
 7. Tap on the grid item to delete with a confirmation bottom sheet.
 
 - class BottomSheetDialog.java extends BottomSheetDialogFragment
 - create resource: bottom_sheet_layout.xml
 
-## Qestions No- 8
+## Questions No- 8
 easy to do with ViewMode
 
-## Qestions No- 9
+## Questions No- 9
 Share button on the grid item to share the image to WhatsApp,
 Facebook, etc
 
@@ -190,7 +194,7 @@ load image by Glide then share it.
         });
 ```
 
-## Qestions No- 9
+## Questions No- 9
 
 Add a timer to check every 10 minutes; if there are more than ten feeds,
 remove all the extras
@@ -214,7 +218,7 @@ private void runTimer() {
 }
 ```
 
-## Qestions No- 10
+## Questions No- 10
  All the deleted feeds should go into Tab 2 as a list.
  
  easy to do
@@ -222,13 +226,13 @@ private void runTimer() {
  
  ### tab2 (Trash)
  
- ## Qestions No- 1
+ ## Questions No- 1
 A table view is displaying all the deleted feeds with the date and time
 of deletion.
 
 I didn't use TableView , I just use RecycleView with items and add the date of deletion
 
-## Qestions No- 2
+## Questions No- 2
 Add the 'swipe to delete' action to delete the feed permanently
 
 do it with pure code 

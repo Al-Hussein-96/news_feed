@@ -18,7 +18,9 @@ import com.test.bein_java.ui.fragments.TrashFragment;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class TrashAdapter extends RecyclerView.Adapter<TrashAdapter.ViewHolder> {
     private final Context context;
@@ -88,6 +90,9 @@ public class TrashAdapter extends RecyclerView.Adapter<TrashAdapter.ViewHolder> 
         public void bind() {
             mTitle.setText(mItem.getTitle());
             mContent.setText(mItem.getContent());
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd \n hh:mm a", Locale.US);
+            textViewDate.setText(format.format(mItem.getDeleteAt()));
 
             Glide.with(mView.getContext())
                     .load(mItem.getImageUrl())

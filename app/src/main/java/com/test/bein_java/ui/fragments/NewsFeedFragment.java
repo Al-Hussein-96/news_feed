@@ -112,8 +112,27 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
         ItemTouchHelper ith = new ItemTouchHelper(_ithCallback);
         ith.attachToRecyclerView(binding.recyclerView);
 
+        setupObserver();
+
 
         return binding.getRoot();
+    }
+
+    private void setupObserver() {
+        mViewModel.getNewsLiveData().observe(getViewLifecycleOwner(), news -> {
+            newsAdapter.replaceData(news);
+        });
+
+        mViewModel.getNoNewsLiveData().observe(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean) {
+                binding.recyclerView.setVisibility(View.GONE);
+                binding.noFeed.getRoot().setVisibility(View.VISIBLE);
+            } else {
+                binding.recyclerView.setVisibility(View.VISIBLE);
+                binding.noFeed.getRoot().setVisibility(View.GONE);
+            }
+        });
+
     }
 
     @Override
@@ -171,14 +190,20 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Log.i("Mohammad", "CameraPhoto");
-//                      There are no request codes
-//                      doSomeOperations();
+
+
                         Bundle extras = result.getData().getExtras();
                         Bitmap imageBitmap = (Bitmap) extras.get("data");
                         String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), imageBitmap, "", null);
 
                         Uri screenshotUri = Uri.parse(path);
-                        newsAdapter.addNews(new News(String.valueOf(System.currentTimeMillis()), "test for android developer", screenshotUri.toString()));
+
+                        Log.i("Mohammad", "screenShotUri: " + screenshotUri.toString());
+
+                        News news = new News(String.valueOf(System.currentTimeMillis()), "test for android developer", screenshotUri.toString());
+
+                        mViewModel.addNewsFromCamera(news);
+                        newsAdapter.addNews(news);
 
                         createNotificationChannel();
 
@@ -187,7 +212,6 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
                                 .setContentTitle("New Item")
                                 .setContentText("you added News to list")
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
 
                         NotificationManager notificationManager = (NotificationManager) requireContext().getSystemService(Context.NOTIFICATION_SERVICE);
                         notificationManager.notify((new Random()).nextInt(), builder.build());
@@ -220,9 +244,6 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
 
 
     private void setupListAdapter() {
-        mViewModel.getNewsLiveData().observe(getViewLifecycleOwner(), news -> {
-            newsAdapter.replaceData(news);
-        });
 
         binding.recyclerView.setAdapter(newsAdapter);
 
@@ -230,8 +251,8 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
     }
 
     private void runTimer() {
-        //        long minute_10 = 10 * 60 * 1000;
-        long minute_10 = 5 * 1000;
+                long minute_10 = 10 * 60 * 1000;
+//        long minute_10 = 5 * 1000;
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

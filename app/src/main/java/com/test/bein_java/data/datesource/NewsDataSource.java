@@ -10,6 +10,8 @@ public interface NewsDataSource {
 
     void moveToTrash(News news);
 
+    void addNews(News news);
+
     interface NewsCallback {
         void onNewsLoaded(List<News> news);
     }
