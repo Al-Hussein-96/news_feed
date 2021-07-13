@@ -13,12 +13,12 @@ public class DummyDateSource implements NewsDataSource {
     private final static List<News> NEWS_ARRAY_LIST = new ArrayList<>();
 
     static {
-        NEWS_ARRAY_LIST.add(new News("1", "Mohammad", "https://assets.nst.com.my/images/articles/03xxworld_1596384698.jpg"));
-        NEWS_ARRAY_LIST.add(new News("2", "Mohammad", "https://www.joelapompe.net/wp-content/uploads/2019/01/bottle-natural-mont-dore-2017.jpg"));
-        NEWS_ARRAY_LIST.add(new News("3", "Mohammad", "http://www.jkuat.ac.ke/departments/transport/wp-content/uploads/2018/11/natural-butterfly-image-for-mobile-1.jpg"));
-        NEWS_ARRAY_LIST.add(new News("4", "Mohammad", "https://assets.nst.com.my/images/articles/03xxworld_1596384698.jpg"));
-        NEWS_ARRAY_LIST.add(new News("5", "Mohammad", "https://www.joelapompe.net/wp-content/uploads/2019/01/bottle-natural-mont-dore-2017.jpg"));
-        NEWS_ARRAY_LIST.add(new News("6", "Mohammad", "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202007/nature-3289812_1280_0.jpeg"));
+        NEWS_ARRAY_LIST.add(new News("1", "This sample is written in Java and based on the master branch which uses the following Architecture Components:", "https://assets.nst.com.my/images/articles/03xxworld_1596384698.jpg"));
+        NEWS_ARRAY_LIST.add(new News("2", "This sample is writtenn", "https://www.joelapompe.net/wp-content/uploads/2019/01/bottle-natural-mont-dore-2017.jpg"));
+        NEWS_ARRAY_LIST.add(new News("3", "the master branch which uses the following Architecture Components", "http://www.jkuat.ac.ke/departments/transport/wp-content/uploads/2018/11/natural-butterfly-image-for-mobile-1.jpg"));
+        NEWS_ARRAY_LIST.add(new News("4", "This sample is written in Java and based on the master branch which uses the following Architecture Components", "https://assets.nst.com.my/images/articles/03xxworld_1596384698.jpg"));
+        NEWS_ARRAY_LIST.add(new News("5", "This sample is written in Java", "https://www.joelapompe.net/wp-content/uploads/2019/01/bottle-natural-mont-dore-2017.jpg"));
+        NEWS_ARRAY_LIST.add(new News("6", "This sample is written in Java and based on the master branch which uses the following Architecture Components", "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202007/nature-3289812_1280_0.jpeg"));
     }
 
     public static DummyDateSource getInstance() {

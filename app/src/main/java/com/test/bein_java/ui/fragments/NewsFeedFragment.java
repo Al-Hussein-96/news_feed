@@ -236,10 +236,14 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
 
     private void refreshLayoutAdapter() {
         if (binding.recyclerView.getLayoutManager() instanceof GridLayoutManager) {
+            newsAdapter.setLayoutManagerType(NewsAdapter.AUTOMATIC);
             binding.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         } else {
+            newsAdapter.setLayoutManagerType(NewsAdapter.FIXED);
             binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         }
+        newsAdapter.notifyDataSetChanged();
+
     }
 
 
@@ -251,7 +255,7 @@ public class NewsFeedFragment extends Fragment implements BottomSheetDialog.Bott
     }
 
     private void runTimer() {
-                long minute_10 = 10 * 60 * 1000;
+        long minute_10 = 10 * 60 * 1000;
 //        long minute_10 = 5 * 1000;
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override

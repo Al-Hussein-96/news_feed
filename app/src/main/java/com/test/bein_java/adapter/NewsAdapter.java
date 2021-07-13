@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -30,9 +31,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+    public final static int AUTOMATIC = 0;
+    public final static int FIXED = 1;
+
     private List<News> newsList;
     private Context context;
     private NewsFeedFragment.ItemClicked itemClicked;
+    private int layoutManagerType = 0;
 
     public NewsAdapter(Context context, List<News> newsList, NewsFeedFragment.ItemClicked itemClicked) {
         this.context = context;
@@ -40,16 +45,31 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         this.itemClicked = itemClicked;
     }
 
+    public void setLayoutManagerType(int layoutManagerType) {
+        this.layoutManagerType = layoutManagerType;
+    }
+
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
 
 
+
         return new ViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
+
+        if (layoutManagerType == FIXED) {
+            holder.imageView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 350));
+            holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            holder.imageView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            holder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
+
         holder.mItem = newsList.get(position);
 
         holder.bind();
@@ -105,7 +125,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     public void removeItemsMoreThan10() {
-//        news.remove(10);
         newsList.subList(10, getItemCount()).clear();
 
         notifyItemRangeRemoved(10, getItemCount());
