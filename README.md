@@ -1,5 +1,9 @@
 # Android test for the Vacancy (Tapped Application)
+<div>
+      <img src="https://github.com/Al-Hussein-96/news_feed/blob/master/photo_2021-07-14_10-34-23.jpg" alt="Snow" style="width:100%">
 
+
+</div>
 ### Summary
 This sample is written in Java and based on the master branch which uses the following Architecture Components:
 
