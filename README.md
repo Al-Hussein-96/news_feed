@@ -7,7 +7,8 @@ This sample is written in Java and based on the master branch which uses the fol
 - LiveData
 - View Binding
 
-if I have enough time I can do it with the following Architecture Components with (Kotlin):
+
+if I have <b> enough time </b> I can do it with the following Architecture Components with (Kotlin):
 - ViewModel
 - LiveData
 - View Binding & data Binding
