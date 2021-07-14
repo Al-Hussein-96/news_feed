@@ -34,6 +34,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public final static int AUTOMATIC = 0;
     public final static int FIXED = 1;
 
+    public final static int SHOW_BOTTOM_SHEET = 0;
+    public final static int SHARE = 1;
+
     private List<News> newsList;
     private Context context;
     private NewsFeedFragment.ItemClicked itemClicked;
@@ -52,7 +55,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news, parent, false);
-
 
 
         return new ViewHolder(view);
@@ -75,39 +77,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.bind();
 
         holder.mView.setOnClickListener(v -> {
-            itemClicked.onItemClicked(holder.mItem);
+            itemClicked.onItemClicked(holder.mItem,SHOW_BOTTOM_SHEET );
         });
 
         holder.share_icon.setOnClickListener(v -> {
-            shareImage(holder.mItem.getImageUrl());
+            itemClicked.onItemClicked(holder.mItem,SHARE);
         });
 
     }
 
-    private void shareImage(String imageUrl) {
-
-        Glide.with(context).asBitmap().load(imageUrl).into(new CustomTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-
-                String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), resource, "", null);
-                Log.i("Mohammad", "path: " + resource);
-
-                Uri screenshotUri = Uri.parse(path);
-
-                shareIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-                shareIntent.setType("image/jpeg");
-                context.startActivity(Intent.createChooser(shareIntent, "share image"));
-            }
-
-            @Override
-            public void onLoadCleared(@Nullable Drawable placeholder) {
-            }
-        });
-
-    }
 
 
     @Override

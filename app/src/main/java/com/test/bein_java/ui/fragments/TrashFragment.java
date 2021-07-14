@@ -80,6 +80,9 @@ public class TrashFragment extends Fragment {
         mViewModel.start();
     }
 
+    /**
+     * to setup adapter to recycle View & apply swipe to refresh with ItemTouchHelper
+     */
     private void setUpRecyclerView() {
         binding.recyclerView.setAdapter(trashAdapter);
         ItemTouchHelper itemTouchHelper = new
