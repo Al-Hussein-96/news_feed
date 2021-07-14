@@ -4,7 +4,9 @@
 
 
 </div>
+
 ### Summary
+
 This sample is written in Java and based on the master branch which uses the following Architecture Components:
 
 - ViewModel
